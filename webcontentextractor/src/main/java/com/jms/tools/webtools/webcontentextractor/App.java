@@ -1,6 +1,7 @@
 package com.jms.tools.webtools.webcontentextractor;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.jsoup.nodes.Document;
 
@@ -14,14 +15,21 @@ public class App
     {
         System.out.println( "Hello World!" );
         WebDocumentRetriever wdr = new WebDocumentRetriever();
-        try {
-			Document d = wdr.getWebDocument("http://www.proxy-listen.de/Proxy/Proxyliste.html");
+        ArrayList<String> urlList = new ArrayList<String>();
+        urlList.add("http://www.proxy-listen.de/Proxy/Proxyliste.html");
+       
+        	for(String url : urlList){
+        		 try {
+        			 Document d = wdr.getWebDocument(url);
+        			 System.out.println("Doc:\r\nw"+d.head());
+        		 } catch (IOException e) {
+        				// TODO Auto-generated catch block
+        				e.printStackTrace();
+        			}
+        	}
 		
-        System.out.println("Doc:\r\nw"+d.html());
-        } catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        
+        
         
     }
 }
